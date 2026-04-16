@@ -189,3 +189,13 @@ table {
   background-image: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.18) 0%, transparent 70%);
   min-height: 100vh;
 }
+.nav-link-hover:hover {
+  color: var(--accent-purple) !important;
+  text-shadow: 0 0 8px var(--accent-purple-glow);
+}
+
+.nav-link-hover.active {
+  color: var(--accent-purple) !important;
+  border-bottom: 2px solid var(--accent-purple);
+  padding-bottom: 4px;
+}
