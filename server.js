@@ -23,6 +23,11 @@ app.use(cors({
   credentials: true
 }));
 
+// Root health check
+app.get('/', (req, res) => {
+  res.json({ success: true, message: 'Purple Merit API is running' });
+});
+
 // Mount Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
