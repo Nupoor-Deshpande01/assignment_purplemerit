@@ -4,16 +4,14 @@ const connectDB = async () => {
   try {
     let uri = process.env.MONGO_URI;
 
-    // Utilize an in-memory instance only if no native URI is provided (for local dev dev/simplicity)
-    if (!uri || uri === 'mongodb://localhost:27017/user_management') {
-      try {
-        const { MongoMemoryServer } = require('mongodb-memory-server');
-        const mongoServer = await MongoMemoryServer.create();
-        uri = mongoServer.getUri();
-        console.log('MongoDB Memory Server explicitly injected at', uri);
-      } catch (e) {
-        console.log('Memory server dependency missing, falling back to original URI.');
-      }
+    // Utilize an in-memory instance automatically for users lacking Docker/Native installations
+    try {
+      const { MongoMemoryServer } = require('mongodb-memory-server');
+      const mongoServer = await MongoMemoryServer.create();
+      uri = mongoServer.getUri();
+      console.log('MongoDB Memory Server explicitly injected at', uri);
+    } catch (e) {
+      console.log('Memory server dependency missing, falling back to native URI.');
     }
 
     const conn = await mongoose.connect(uri, {
