@@ -1,0 +1,191 @@
+:root {
+  --bg-primary: #08080F;         
+  --bg-secondary: #0F0F1A;       
+  --accent-purple: #7C3AED;      
+  --accent-purple-soft: rgba(124, 58, 237, 0.15);  
+  --accent-purple-glow: rgba(124, 58, 237, 0.35);  
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0B8;
+  --border-subtle: rgba(124, 58, 237, 0.2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-entry {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .animate-entry.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Syne", "Clash Display", sans-serif;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+table {
+  min-width: max-content;
+}
+
+.responsive-container {
+  padding: 2.5rem;   
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .responsive-container {
+    padding: 1.5rem !important;
+    margin: 1rem !important;
+  }
+  table th, table td {
+    padding: 0.5rem !important;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animations */
+.ticker-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  background: rgba(124, 58, 237, 0.08);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 12px 0;
+}
+
+.ticker-track {
+  display: inline-flex;
+  gap: 48px;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-chip {
+  background: var(--accent-purple-soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-primary);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: chipFloat 0.5s ease forwards;
+}
+
+.tag-chip:nth-child(1) { animation-delay: 0.1s; }
+.tag-chip:nth-child(2) { animation-delay: 0.2s; }
+.tag-chip:nth-child(3) { animation-delay: 0.3s; }
+.tag-chip:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes chipFloat {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 24px var(--accent-purple-glow);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-card:hover {
+  box-shadow: 0 0 32px rgba(124, 58, 237, 0.45);
+  border-color: rgba(124,58,237,0.5);
+}
+
+.theme-button {
+  background: var(--accent-purple);
+  color: white;
+  border-radius: 999px;
+  padding: 12px 28px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.theme-button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.theme-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 0 24px var(--accent-purple-glow);
+  border-color: rgba(124,58,237,0.5);
+}
+
+.stat-number {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent-purple);
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.radial-bg {
+  background: var(--bg-primary);
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.18) 0%, transparent 70%);
+  min-height: 100vh;
+}
